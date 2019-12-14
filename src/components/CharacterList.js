@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-
-import CharacterCard from "./CharacterCard";
+import SearchForm from "./SearchForm";
 
 export default function CharacterList() {
   // TODO: Add useState to track data from useEffect
@@ -23,12 +22,12 @@ export default function CharacterList() {
       .catch(error => console.log(`Uh oh... ${error}`));
   }, []);
 
+  
   return (
-    <section className="character-list">
-      {ramapi.map(character => {
-        return <CharacterCard name={character.name} status={character.status} key={character.id}/> //Will add gender species status and image later
-      })}
-      
-    </section>
+
+    // PUT THE SEARCH HERE
+    //If character.name.includes(search results) map them to screen
+    <SearchForm data={ramapi}/>
+    
   );
 }
