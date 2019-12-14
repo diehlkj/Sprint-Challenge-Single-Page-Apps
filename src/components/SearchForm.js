@@ -13,7 +13,7 @@ const List = styled.section`
 export default function SearchForm(props) {
  
   const [search, setSearch] = useState("");
-  const [results, setResults] = useState([]);
+  const [results, setResults] = useState(props.data);
 
   useEffect(() => {
     let list = [];
@@ -24,21 +24,41 @@ export default function SearchForm(props) {
     });
 
     setResults(list);
-  }, [search]);
+  }, [search, props.data]);
+
+
+
+    // useEffect(() => {
+    //   if (props.data){
+    //     console.log('In set the thing', props.data);
+    //     setResults(props.data);
+    //   }
+    // }, [props.data]);
+
+
+
+  console.log('In Search', props);
 
   const handleChange = event => {
     setSearch(event.target.value);
   };
 
+  // const handleSubmit = (event) => {
+  //   let list = [];
+  //   props.data.forEach(character => {
+  //     if (character.name.toLowerCase().includes(search.toLocaleLowerCase())) {
+  //       return list.unshift(character);
+  //     }
+  //   });
+
+  //   setResults(list);
+  //   event.preventDefault();
+  // };
+
   return (
     <section className="search-form">
-     // Add a search form here
      <form>
-        {/* We apply two-way data binding to the input field, which basically takes the value from the user and saves it into the state. */}
-        {/* Two-way binding just means that:
-        When properties in the model get updated, so does the UI.
-        When UI elements get updated, the changes get propagated back to the model. */}
-        <label htmlFor="name">Search:</label>
+        <label htmlFor="name">Search: </label>
         <input
           id="name"
           type="text"
@@ -51,7 +71,8 @@ export default function SearchForm(props) {
 
       <List>
         {results.map(character => {
-          return <CharacterCard name={character.name} status={character.status} key={character.id}/> //Will add gender species status and image later
+          console.log('Mapping Cards');
+          return <CharacterCard name={character.name} status={character.status} key={character.id}/>
         })}
         
       </List>

@@ -6,7 +6,7 @@ export default function CharacterList() {
   // TODO: Add useState to track data from useEffect
 
   const [ramapi, setRamapi] = useState([]);
-  const [apiInfo, setApiInfo] = useState();
+  // const [apiInfo, setApiInfo] = useState();
 
   useEffect(() => {
     // TODO: Add API Request here - must run in `useEffect`
@@ -16,7 +16,7 @@ export default function CharacterList() {
       .get(`https://rickandmortyapi.com/api/character/`)
       .then(response => {
         setRamapi(response.data.results); // Array of objects
-        setApiInfo(response.data.info); // Object: -count -pages -next (Gives url for next page... could just take pages as a var and for loop that number of times incrementing the ?page=X query )
+        // setApiInfo(response.data.info);  Object: -count -pages -next (Gives url for next page... could just take pages as a var and for loop that number of times incrementing the ?page=X query )
         console.log(response); 
       })
       .catch(error => console.log(`Uh oh... ${error}`));
